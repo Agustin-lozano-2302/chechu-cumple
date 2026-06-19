@@ -1,35 +1,249 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>¡Feliz Cumpleaños Chechu!</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Cumple de Chechu · 53</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="card" id="card">
-    <div class="card-front">
-      <div class="envelope">
-        <div class="envelope-flap"></div>
-        <p class="hint">Hacé click para abrir 💌</p>
-      </div>
+
+  <!-- SVG defs globales (gradientes usados en múltiples pantallas) -->
+  <svg width="0" height="0" style="position:absolute">
+    <defs>
+      <linearGradient id="gGold" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0"   stop-color="#e9cd7e"/>
+        <stop offset=".5"  stop-color="#d4af37"/>
+        <stop offset="1"   stop-color="#b8923f"/>
+      </linearGradient>
+      <linearGradient id="gGold2" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0"   stop-color="#d9b85f"/>
+        <stop offset=".5"  stop-color="#c5a55a"/>
+        <stop offset="1"   stop-color="#a9863f"/>
+      </linearGradient>
+    </defs>
+  </svg>
+
+  <!-- ══════════════════════════════
+       PANTALLA 1 — INTRO
+  ══════════════════════════════ -->
+  <div class="screen" id="s1">
+    <canvas id="dustCanvas"></canvas>
+
+    <div class="s1-dots dots">
+      <span class="dot dot-on"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
     </div>
-    <div class="card-inside">
-      <h1>¡Feliz Cumpleaños<br>Chechu! 🎉</h1>
-      <div class="cake">
-        <div class="candles">
-          <div class="candle"><div class="flame"></div></div>
-          <div class="candle"><div class="flame"></div></div>
-          <div class="candle"><div class="flame"></div></div>
+
+    <div class="medallion-wrap" id="tapReveal">
+      <div class="medallion">
+        <div class="medallion-glow"></div>
+
+        <!-- Anillos + texto curvo -->
+        <svg class="medallion-svg" viewBox="0 0 360 360" overflow="visible">
+          <defs>
+            <path id="aTop1" d="M 50 180 A 130 130 0 0 1 310 180"/>
+            <path id="aBot1" d="M 56 180 A 124 124 0 0 0 304 180"/>
+          </defs>
+          <circle cx="180" cy="180" r="172" fill="none" stroke="url(#gGold)" stroke-width="1.4" opacity=".9"/>
+          <circle cx="180" cy="180" r="150" fill="none" stroke="url(#gGold)" stroke-width="2.4"/>
+          <circle cx="180" cy="180" r="142" fill="none" stroke="url(#gGold)" stroke-width="1" stroke-dasharray="2 7" opacity=".85"/>
+          <text fill="url(#gGold)" style="font-family:'Cinzel',serif;font-weight:600;letter-spacing:7px;font-size:25px">
+            <textPath href="#aTop1" startOffset="50%" text-anchor="middle">VENÍ A MI CUMPLE</textPath>
+          </text>
+          <text fill="url(#gGold)" opacity=".75" style="font-family:'Cinzel',serif;font-weight:500;letter-spacing:5px;font-size:15px">
+            <textPath href="#aBot1" startOffset="50%" text-anchor="middle">· 28 · 06 ·</textPath>
+          </text>
+        </svg>
+
+        <!-- Sahumerio — palo finito con humo -->
+        <div class="sahumerio sahumerio-dark">
+          <svg viewBox="0 0 32 130" width="32" height="130" overflow="visible">
+            <!-- humo animado -->
+            <g class="wisp-a">
+              <path d="M16 20 C 8 10, 26 2, 16 -8" fill="none" stroke="#e9cd7e" stroke-width="1.8" stroke-linecap="round" opacity=".8"/>
+            </g>
+            <g class="wisp-b">
+              <path d="M21 23 C 29 12, 14 4, 24 -6" fill="none" stroke="#d4af37" stroke-width="1.4" stroke-linecap="round" opacity=".6"/>
+            </g>
+            <!-- brasa -->
+            <circle cx="16" cy="25" r="2.8" fill="#e9a030"/>
+            <circle cx="16" cy="25" r="5"   fill="rgba(230,160,0,.22)"/>
+            <!-- palo fino -->
+            <line x1="16" y1="28" x2="16" y2="108" stroke="#2a1a08" stroke-width="3" stroke-linecap="round"/>
+            <!-- hilos decorativos (wrapping) -->
+            <line x1="11" y1="46" x2="21" y2="40" stroke="url(#gGold)" stroke-width="1.6" opacity=".7"/>
+            <line x1="11" y1="62" x2="21" y2="56" stroke="url(#gGold)" stroke-width="1.6" opacity=".7"/>
+            <line x1="11" y1="78" x2="21" y2="72" stroke="url(#gGold)" stroke-width="1.6" opacity=".7"/>
+            <!-- base/porta-incienso -->
+            <ellipse cx="16" cy="110" rx="12" ry="5" fill="rgba(212,175,55,.25)" stroke="url(#gGold)" stroke-width="1.4"/>
+          </svg>
         </div>
-        <div class="cake-top"></div>
-        <div class="cake-bottom"></div>
       </div>
-      <p class="message">Que este día esté lleno de alegría, risas y todo lo que te haga feliz. 🥳</p>
-      <button id="confettiBtn">🎊 Lanzar confetti</button>
+
+      <div class="s1-hint">
+        <span>Tocá para revelar</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.6"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+      </div>
     </div>
   </div>
-  <canvas id="confetti"></canvas>
+
+  <!-- ══════════════════════════════
+       PANTALLA 2 — REVELACIÓN
+  ══════════════════════════════ -->
+  <div class="screen hidden" id="s2">
+
+    <div class="s2-dots dots">
+      <span class="dot"></span>
+      <span class="dot dot-on-cream"></span>
+      <span class="dot"></span>
+    </div>
+
+    <!-- Sparkles de fondo -->
+    <div class="sparkles" aria-hidden="true">
+      <svg class="sp s-p1" viewBox="0 0 100 100" fill="#9fb0d4"><path d="M50 0 L58 42 L100 50 L58 58 L50 100 L42 58 L0 50 L42 42Z"/></svg>
+      <svg class="sp s-p2" viewBox="0 0 100 100" fill="#c5a55a"><path d="M50 0 L58 42 L100 50 L58 58 L50 100 L42 58 L0 50 L42 42Z"/></svg>
+      <svg class="sp s-p3" viewBox="0 0 100 100" fill="#9fb0d4"><path d="M50 0 L58 42 L100 50 L58 58 L50 100 L42 58 L0 50 L42 42Z"/></svg>
+      <svg class="sp s-p4" viewBox="0 0 100 100" fill="#c5a55a"><path d="M50 0 L58 42 L100 50 L58 58 L50 100 L42 58 L0 50 L42 42Z"/></svg>
+    </div>
+
+    <div class="s2-body">
+
+      <!-- Sahumerio encima del contenido -->
+      <div class="sahumerio sahumerio-cream">
+        <svg viewBox="0 0 24 100" width="24" height="100" overflow="visible">
+          <g class="wisp-a">
+            <path d="M12 14 C 5 6, 20 0, 12 -8" fill="none" stroke="rgba(120,110,100,.5)" stroke-width="1.5" stroke-linecap="round"/>
+          </g>
+          <g class="wisp-b">
+            <path d="M16 17 C 22 8, 10 1, 19 -7" fill="none" stroke="rgba(120,110,100,.32)" stroke-width="1.2" stroke-linecap="round"/>
+          </g>
+          <!-- brasa -->
+          <circle cx="12" cy="18" r="2.2" fill="#d4882a"/>
+          <circle cx="12" cy="18" r="4"   fill="rgba(210,130,0,.2)"/>
+          <!-- palo fino -->
+          <line x1="12" y1="21" x2="12" y2="86" stroke="#4a3318" stroke-width="2" stroke-linecap="round"/>
+          <!-- hilos -->
+          <line x1="8"  y1="36" x2="16" y2="31" stroke="#c5a55a" stroke-width="1.2" opacity=".6"/>
+          <line x1="8"  y1="50" x2="16" y2="45" stroke="#c5a55a" stroke-width="1.2" opacity=".6"/>
+          <line x1="8"  y1="64" x2="16" y2="59" stroke="#c5a55a" stroke-width="1.2" opacity=".6"/>
+          <!-- base -->
+          <ellipse cx="12" cy="88" rx="9" ry="3.5" fill="rgba(197,165,90,.2)" stroke="#c5a55a" stroke-width="1"/>
+        </svg>
+      </div>
+
+      <!-- Línea fina superior -->
+      <div class="h-rule"></div>
+
+      <!-- Nombre -->
+      <h1 class="s2-name">CHECHU</h1>
+      <p class="s2-age">MIS 53</p>
+
+      <!-- Divisor central con estrella -->
+      <div class="star-rule">
+        <span class="star-line"></span>
+        <svg width="14" height="14" viewBox="0 0 100 100" fill="#c5a55a"><path d="M50 0 L58 42 L100 50 L58 58 L50 100 L42 58 L0 50 L42 42Z"/></svg>
+        <span class="star-line"></span>
+      </div>
+
+      <!-- Detalles del evento -->
+      <p class="s2-date">DOMINGO 28 DE JUNIO · 13 HS</p>
+      <p class="s2-note">✦ traé tus bebidas ✦</p>
+
+      <!-- Línea fina inferior -->
+      <div class="h-rule"></div>
+
+      <!-- Tarjetas de tarot -->
+      <div class="tarot-row">
+        <svg class="tarot-card tc-left" viewBox="0 0 56 82" width="56" height="82">
+          <rect x="2" y="2" width="52" height="78" rx="7" fill="none" stroke="#1a2744" stroke-width="1.8"/>
+          <rect x="6" y="6" width="44" height="70" rx="5" fill="none" stroke="#1a2744" stroke-width=".6" opacity=".35"/>
+          <!-- ojo -->
+          <path d="M10 41 Q28 24 46 41 Q28 58 10 41 Z" fill="none" stroke="#1a2744" stroke-width="1.6"/>
+          <circle cx="28" cy="41" r="8.5" fill="none" stroke="#1a2744" stroke-width="1.4"/>
+          <circle cx="28" cy="41" r="4"   fill="#1a2744"/>
+          <!-- estrella top / bottom -->
+          <text x="28" y="22" text-anchor="middle" font-size="9" fill="#c5a55a">✦</text>
+          <text x="28" y="68" text-anchor="middle" font-size="7" fill="#c5a55a">✦</text>
+        </svg>
+
+        <svg class="tarot-card tc-right" viewBox="0 0 56 82" width="56" height="82">
+          <rect x="2" y="2" width="52" height="78" rx="7" fill="none" stroke="#1a2744" stroke-width="1.8"/>
+          <rect x="6" y="6" width="44" height="70" rx="5" fill="none" stroke="#1a2744" stroke-width=".6" opacity=".35"/>
+          <!-- ojo -->
+          <path d="M10 41 Q28 24 46 41 Q28 58 10 41 Z" fill="none" stroke="#1a2744" stroke-width="1.6"/>
+          <circle cx="28" cy="41" r="8.5" fill="none" stroke="#1a2744" stroke-width="1.4"/>
+          <circle cx="28" cy="41" r="4"   fill="#1a2744"/>
+          <!-- estrella top / bottom -->
+          <text x="28" y="22" text-anchor="middle" font-size="9" fill="#c5a55a">✦</text>
+          <text x="28" y="68" text-anchor="middle" font-size="7" fill="#c5a55a">✦</text>
+        </svg>
+      </div>
+
+    </div>
+
+    <button class="pill-btn" id="toBtnS3">
+      CONTINUAR
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </button>
+  </div>
+
+  <!-- ══════════════════════════════
+       PANTALLA 3 — UBICACIÓN
+  ══════════════════════════════ -->
+  <div class="screen hidden" id="s3">
+    <canvas id="confettiCanvas"></canvas>
+
+    <div class="s3-dots dots">
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot dot-on"></span>
+    </div>
+
+    <div class="s3-body">
+      <svg class="eye-icon" width="60" height="42" viewBox="0 0 64 44" fill="none" stroke="#d4af37" stroke-width="2.2">
+        <path d="M6 22 Q32 2 58 22 Q32 42 6 22 Z"/>
+        <circle cx="32" cy="22" r="7.5" fill="#d4af37" stroke="none"/>
+      </svg>
+
+      <p class="s3-eyebrow">Te espero en</p>
+      <h2 class="s3-place">Praderas<br>del Nogal</h2>
+
+      <div class="s3-rule">
+        <span class="rule-line"></span>
+        <span class="rule-text">DOM 28 JUN · 13 HS</span>
+        <span class="rule-line"></span>
+      </div>
+
+      <p class="s3-note">✦ traé tus bebidas ✦</p>
+
+      <div class="map-wrap">
+        <iframe
+          class="map-iframe"
+          title="Ubicación Praderas del Nogal"
+          loading="lazy"
+          allowfullscreen
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://maps.google.com/maps?q=Praderas+del+Nogal,+Buenos+Aires+Argentina&z=15&output=embed&hl=es">
+        </iframe>
+      </div>
+
+      <a class="map-btn" href="https://maps.app.goo.gl/Laywb21mVEvfGU6c9" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+          <circle cx="12" cy="9" r="2.5"/>
+        </svg>
+        Cómo llegar
+      </a>
+
+      <button class="back-btn" id="backToS1">↺ Volver al inicio</button>
+    </div>
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>
