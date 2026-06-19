@@ -10,3 +10,7 @@ Abrí `index.html` en tu navegador o desplegala con GitHub Pages.
 
 - HTML / CSS / JavaScript
 - Sin dependencias externas
+
+## Estado
+
+✅ Proyecto inicializado y funcionando.
